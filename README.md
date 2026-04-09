@@ -367,7 +367,7 @@ MIT License
 cd "D:\cc_projects\openclaw-research\Expert Agent Builder"
 
 # 添加远程仓库（将YOUR_USERNAME替换为你的GitHub用户名）
-git remote add origin https://github.com/YOUR_USERNAME/expert-agent-builder.git
+git remote add origin https://github.com/pkulyn/expert-agent-builder.git
 
 # 推送代码
 git branch -M main
