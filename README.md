@@ -350,6 +350,44 @@ skill/
 
 MIT License
 
+## GitHub部署
+
+### 1. 在GitHub创建新仓库
+1. 访问 https://github.com 并登录
+2. 点击右上角 "+" → "New repository"
+3. 仓库名称：`expert-agent-builder`
+4. 描述：`基于四层六维专业人格模型的专家级Agent配置生成器`
+5. 选择 **Public**（公开）
+6. **不要**初始化README、.gitignore或LICENSE（项目已包含）
+7. 点击 "Create repository"
+
+### 2. 推送代码到GitHub
+```bash
+# 进入项目目录
+cd "D:\cc_projects\openclaw-research\Expert Agent Builder"
+
+# 添加远程仓库（将YOUR_USERNAME替换为你的GitHub用户名）
+git remote add origin https://github.com/YOUR_USERNAME/expert-agent-builder.git
+
+# 推送代码
+git branch -M main
+git push -u origin main
+```
+
+### 3. 创建版本标签（可选）
+```bash
+# 创建版本标签
+git tag -a v1.0.0 -m "Expert Agent Builder v1.0.0 初始版本"
+
+# 推送标签
+git push origin v1.0.0
+```
+
+### 4. 设置GitHub Pages（可选，用于文档）
+1. 进入仓库设置 → Pages
+2. Source选择 `main` 分支，文件夹选择 `/docs`（如果启用文档站点）
+3. 保存，等待部署完成
+
 ## 支持
 
 - 问题跟踪：GitHub Issues
