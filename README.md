@@ -1,5 +1,22 @@
 # 专家级Agent构建器（Expert Agent Builder）
 
+<p align="center">
+  <!-- 许可证 -->
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
+  </a>
+  <!-- Python版本 -->
+  <a href="https://www.python.org/downloads/">
+    <img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python 3.8+">
+  </a>
+  <!-- 平台支持 -->
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey" alt="Multi-Platform">
+  <!-- 版本号 -->
+  <img src="https://img.shields.io/badge/version-1.0.0-orange" alt="Version 1.0.0">
+  <!-- 文档状态 -->
+  <img src="https://img.shields.io/badge/docs-完整-brightgreen" alt="Docs Complete">
+</p>
+
 基于四层六维专业人格模型研究成果开发的配置生成工具，帮助用户快速创建专家级Agent配置文件。
 
 ## 特性
