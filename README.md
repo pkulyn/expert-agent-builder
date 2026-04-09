@@ -88,6 +88,7 @@ python openclaw-config-generator.py --mode example
 3. **双格式输出** (`--format both`)：同时生成OpenClaw和Claude Code格式配置
 
 **示例**：
+
 ```bash
 # 生成Claude Code格式配置
 python openclaw-config-generator.py \
@@ -111,21 +112,21 @@ python openclaw-config-generator.py \
 
 生成的配置包含5个核心文件：
 
-| 文件 | 描述 | 核心内容 |
-|------|------|----------|
-| `SOUL.md` | Agent灵魂与核心价值观 | 核心真理、专业价值观、情感智能价值观、服务承诺 |
-| `IDENTITY.md` | Agent身份特征与个性 | 专业身份、个性特征、多维评分体系、情感表达模式库 |
-| `TOOLS.md` | Agent专业工具与工作环境 | 专业工具设置、情感智能工具、环境变量配置 |
-| `AGENTS.md` | Agent工作流程与协作方式 | 工作流程、团队连接建立、情感支持策略、质量标准 |
-| `USER.md` | Agent对用户的理解与关系管理 | 用户信息、沟通偏好、情感偏好、项目上下文 |
+| 文件            | 描述                        | 核心内容                                         |
+| --------------- | --------------------------- | ------------------------------------------------ |
+| `SOUL.md`     | Agent灵魂与核心价值观       | 核心真理、专业价值观、情感智能价值观、服务承诺   |
+| `IDENTITY.md` | Agent身份特征与个性         | 专业身份、个性特征、多维评分体系、情感表达模式库 |
+| `TOOLS.md`    | Agent专业工具与工作环境     | 专业工具设置、情感智能工具、环境变量配置         |
+| `AGENTS.md`   | Agent工作流程与协作方式     | 工作流程、团队连接建立、情感支持策略、质量标准   |
+| `USER.md`     | Agent对用户的理解与关系管理 | 用户信息、沟通偏好、情感偏好、项目上下文         |
 
 ### Claude Code格式配置文件结构
 
 当使用 `--format claudecode` 时，生成以下配置文件：
 
-| 文件 | 描述 | 核心内容 |
-|------|------|----------|
-| `CLAUDE.md` | 项目手册 | 项目概述、核心工作规则、标准工作流程、Agent配置说明、工具与环境、文件命名规范、常用快捷指令 |
+| 文件               | 描述          | 核心内容                                                                                                                                                                          |
+| ------------------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLAUDE.md`      | 项目手册      | 项目概述、核心工作规则、标准工作流程、Agent配置说明、工具与环境、文件命名规范、常用快捷指令                                                                                       |
 | `[Agent名称].md` | Agent配置文件 | Frontmatter（name、description、type、model）、核心身份定位、强制遵守规则、标准工作流程、核心工作职责、专业能力与工具、用户理解与沟通、工作质量标准、情感智能与支持、快速响应模板 |
 
 *注：Claude Code格式配置文件基于Expert Agent Builder方法论生成，将OpenClaw四层六维专业人格模型适配到Claude Code平台。*
@@ -173,37 +174,45 @@ python openclaw-config-generator.py \
 ## 专业领域支持
 
 ### 技术架构
+
 - 系统架构设计、技术选型评估、性能优化
 - 云原生架构、分布式系统设计、高可用性设计
 
 ### 法律咨询
+
 - 法律研究、合同分析、合规性检查
 - 法律文书模板、案例管理系统
 
 ### 商业战略
+
 - 市场分析、财务分析、战略规划
 - 竞争分析、商业模型画布
 
 ### 创意总监
+
 - 创意概念开发、设计系统构建
 - 情感表达优化、创意工具集成
 
 ### 医学研究
+
 - 医学文献分析、研究设计指导
 - 临床数据分析、伦理审查支持
 
 ## 情感智能功能
 
 ### 情感识别
+
 - 分析语言线索、行为模式、情感状态
 - 识别技术压力、团队冲突、个人成就感
 
 ### 情感支持
+
 - 提供适时的鼓励和认可
 - 在困难时刻提供技术和情感支持
 - 帮助恢复信心和方向
 
 ### 个性化沟通
+
 - 根据用户偏好调整沟通风格
 - 平衡专业严谨与人性关怀
 - 建立信任和深度连接
@@ -211,15 +220,18 @@ python openclaw-config-generator.py \
 ## 验证体系
 
 ### 基础验证 (basic)
+
 - 文件存在性检查
 - 基本格式验证
 
 ### 标准验证 (standard)
+
 - 章节完整性检查
 - 基本一致性验证
 - 参数范围合理性检查
 
 ### 严格验证 (strict)
+
 - 完整一致性验证
 - 内容质量评估
 - 情感表达自然度检查
@@ -227,12 +239,14 @@ python openclaw-config-generator.py \
 ## 示例：技术架构顾问
 
 ### 用户背景
+
 - **姓名**：张明
 - **职位**：技术总监
 - **公司**：云创科技有限公司
 - **经验**：12年技术架构经验
 
 ### Agent画像
+
 - **角色定义**：资深技术架构顾问，专注于云原生和分布式系统设计
 - **核心能力**：系统架构设计、性能优化、技术债务管理、团队技术指导
 - **情感智能水平**：8/10
@@ -262,6 +276,7 @@ python ../../openclaw-config-generator.py \
 ## 高级功能
 
 ### 批量生成
+
 支持批量处理多个用户和Agent配置：
 
 ```bash
@@ -269,6 +284,7 @@ python openclaw-config-generator.py --mode batch --input-dir batch-inputs
 ```
 
 ### 自定义模板
+
 使用自定义模板文件生成配置：
 
 ```bash
@@ -278,6 +294,7 @@ python openclaw-config-generator.py \
 ```
 
 ### API集成
+
 提供Python API供其他工具调用：
 
 ```python
@@ -295,27 +312,32 @@ generator.generate_all()
 ### 常见问题
 
 1. **Python版本不兼容**
+
    ```
    错误：需要Python 3.8或更高版本
    ```
-   解决方案：升级Python或使用Python 3.8+
 
+   解决方案：升级Python或使用Python 3.8+
 2. **模板文件缺失**
+
    ```
    错误：无法找到模板文件
    ```
-   解决方案：确保模板文件存在于templates/目录中
 
+   解决方案：确保模板文件存在于templates/目录中
 3. **编码问题**
+
    ```
    UnicodeDecodeError
    ```
-   解决方案：确保文件使用UTF-8编码
 
+   解决方案：确保文件使用UTF-8编码
 4. **权限问题**
+
    ```
    Permission denied
    ```
+
    解决方案：检查文件读写权限
 
 ### 调试模式
@@ -351,8 +373,8 @@ skill/
 
 ### 扩展新领域
 
-1. 在`templates/`目录中创建新的领域模板
-2. 在`examples/`目录中创建新的示例
+1. 在 `templates/`目录中创建新的领域模板
+2. 在 `examples/`目录中创建新的示例
 3. 更新领域适配逻辑
 4. 添加新的验证规则
 
@@ -367,44 +389,6 @@ skill/
 
 MIT License
 
-## GitHub部署
-
-### 1. 在GitHub创建新仓库
-1. 访问 https://github.com 并登录
-2. 点击右上角 "+" → "New repository"
-3. 仓库名称：`expert-agent-builder`
-4. 描述：`基于四层六维专业人格模型的专家级Agent配置生成器`
-5. 选择 **Public**（公开）
-6. **不要**初始化README、.gitignore或LICENSE（项目已包含）
-7. 点击 "Create repository"
-
-### 2. 推送代码到GitHub
-```bash
-# 进入项目目录
-cd "D:\cc_projects\openclaw-research\Expert Agent Builder"
-
-# 添加远程仓库（将YOUR_USERNAME替换为你的GitHub用户名）
-git remote add origin https://github.com/pkulyn/expert-agent-builder.git
-
-# 推送代码
-git branch -M main
-git push -u origin main
-```
-
-### 3. 创建版本标签（可选）
-```bash
-# 创建版本标签
-git tag -a v1.0.0 -m "Expert Agent Builder v1.0.0 初始版本"
-
-# 推送标签
-git push origin v1.0.0
-```
-
-### 4. 设置GitHub Pages（可选，用于文档）
-1. 进入仓库设置 → Pages
-2. Source选择 `main` 分支，文件夹选择 `/docs`（如果启用文档站点）
-3. 保存，等待部署完成
-
 ## 支持
 
 - 问题跟踪：GitHub Issues
@@ -414,6 +398,7 @@ git push origin v1.0.0
 ## 更新日志
 
 ### v1.0.0 (2026-04-09)
+
 - 初始版本发布
 - 基于第四阶段研究成果
 - 完整的配置生成和验证功能
