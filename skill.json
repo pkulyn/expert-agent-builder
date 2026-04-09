@@ -1,0 +1,166 @@
+{
+  "name": "expert-agent-builder",
+  "version": "1.0.0",
+  "description": "高级专业Agent配置生成工具 - 基于四层六维专业人格模型研究成果，帮助用户快速创建专家级Agent配置文件，支持OpenClaw和Claude Code双格式输出",
+  "author": "pkulyn",
+  "license": "MIT",
+  "homepage": "https://github.com/pkulyn/expert-agent-builder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pkulyn/expert-agent-builder.git"
+  },
+  "keywords": [
+    "openclaw",
+    "agent",
+    "configuration",
+    "professional",
+    "emotional-intelligence",
+    "tooling"
+  ],
+  "command": {
+    "type": "script",
+    "script": "openclaw-config-generator.py",
+    "description": "高级专业Agent配置生成器"
+  },
+  "arguments": [
+    {
+      "name": "mode",
+      "type": "string",
+      "description": "运行模式",
+      "default": "interactive",
+      "choices": [
+        {
+          "value": "interactive",
+          "description": "交互式模式：引导用户填写模板并生成配置"
+        },
+        {
+          "value": "generate",
+          "description": "生成模式：基于现有模板文件生成配置"
+        },
+        {
+          "value": "validate",
+          "description": "验证模式：验证现有配置质量"
+        },
+        {
+          "value": "example",
+          "description": "示例模式：运行技术架构顾问示例"
+        }
+      ]
+    },
+    {
+      "name": "user-profile",
+      "type": "string",
+      "description": "用户个人信息JSON文件路径",
+      "optional": true
+    },
+    {
+      "name": "agent-profile",
+      "type": "string",
+      "description": "Agent画像JSON文件路径",
+      "optional": true
+    },
+    {
+      "name": "output-dir",
+      "type": "string",
+      "description": "输出目录",
+      "default": "generated-config"
+    },
+    {
+      "name": "domain",
+      "type": "string",
+      "description": "专业领域",
+      "default": "技术架构"
+    },
+    {
+      "name": "optimization-level",
+      "type": "string",
+      "description": "优化级别",
+      "default": "medium",
+      "choices": [
+        {
+          "value": "low",
+          "description": "低优化：基础配置生成"
+        },
+        {
+          "value": "medium",
+          "description": "中优化：标准配置生成"
+        },
+        {
+          "value": "high",
+          "description": "高优化：深度优化配置生成"
+        }
+      ]
+    },
+    {
+      "name": "validation-level",
+      "type": "string",
+      "description": "验证级别",
+      "default": "standard",
+      "choices": [
+        {
+          "value": "basic",
+          "description": "基础验证：文件存在性和格式"
+        },
+        {
+          "value": "standard",
+          "description": "标准验证：完整性和基本一致性"
+        },
+        {
+          "value": "strict",
+          "description": "严格验证：完整一致性、质量检查"
+        }
+      ]
+    },
+    {
+      "name": "format",
+      "type": "string",
+      "description": "输出格式",
+      "default": "openclaw",
+      "choices": [
+        {
+          "value": "openclaw",
+          "description": "OpenClaw格式：生成SOUL.md、IDENTITY.md、TOOLS.md、AGENTS.md、USER.md"
+        },
+        {
+          "value": "claudecode",
+          "description": "Claude Code格式：生成CLAUDE.md和Agent配置文件"
+        },
+        {
+          "value": "both",
+          "description": "双格式输出：同时生成OpenClaw和Claude Code格式配置"
+        }
+      ]
+    },
+    {
+      "name": "claudecode-dir",
+      "type": "string",
+      "description": "Claude Code输出目录",
+      "default": "claudecode-config"
+    }
+  ],
+  "files": [
+    {
+      "name": "README.md",
+      "description": "使用说明文档"
+    },
+    {
+      "name": "openclaw-config-generator.py",
+      "description": "主生成脚本"
+    },
+    {
+      "name": "templates/",
+      "description": "模板文件目录"
+    },
+    {
+      "name": "examples/",
+      "description": "示例文件目录"
+    },
+    {
+      "name": "utils/",
+      "description": "工具脚本目录"
+    }
+  ],
+  "dependencies": {
+    "python": ">=3.8"
+  }
+}
