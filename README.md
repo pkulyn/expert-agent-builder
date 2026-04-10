@@ -12,7 +12,7 @@
   <!-- 平台支持 -->
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey" alt="Multi-Platform">
   <!-- 版本号 -->
-  <img src="https://img.shields.io/badge/version-1.0.0-orange" alt="Version 1.0.0">
+  <img src="https://img.shields.io/badge/version-2.0.0-orange" alt="Version 2.0.0">
   <!-- 文档状态 -->
   <img src="https://img.shields.io/badge/docs-完整-brightgreen" alt="Docs Complete">
 </p>
