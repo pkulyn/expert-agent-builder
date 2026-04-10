@@ -16,7 +16,7 @@ import argparse
 import datetime
 import shutil
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 
 # 添加utils目录到路径
 sys.path.insert(0, str(Path(__file__).parent / "utils"))
