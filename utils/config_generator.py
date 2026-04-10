@@ -79,6 +79,9 @@ class ConfigGenerator:
     def _save_file(self, filename: str, content: str) -> str:
         """保存文件到输出目录"""
         filepath = self.output_dir / filename
+        # 确保目录存在
+        filepath.parent.mkdir(parents=True, exist_ok=True)
+
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(content)
 
@@ -120,11 +123,45 @@ class ConfigGenerator:
         return name
 
     def _get_agent_name(self) -> str:
-        """获取Agent名称"""
+        """获取Agent名称（完整描述）"""
         role = self._get_value(self.agent_data, "professional_identity.role_definition")
         if not role:
             role = "高级专业顾问"
         return role
+
+    def _get_agent_filename(self) -> str:
+        """获取Agent文件名（简化版）"""
+        role = self._get_value(self.agent_data, "professional_identity.role_definition")
+        if not role:
+            return "高级专业顾问"
+
+        # 简化角色定义为文件名
+        # 移除"资深"、"高级"等前缀，取逗号前的部分，限制长度
+        simplified = role
+
+        # 如果有逗号，取逗号前的部分
+        if "，" in simplified:
+            simplified = simplified.split("，")[0]
+
+        # 移除常见前缀
+        prefixes = ["资深", "高级", "专业", "首席", "资深高级"]
+        for prefix in prefixes:
+            if simplified.startswith(prefix):
+                simplified = simplified[len(prefix):]
+                break
+
+        # 限制文件名长度（最大50字符）
+        if len(simplified) > 50:
+            simplified = simplified[:47] + "..."
+
+        # 移除首尾空格
+        simplified = simplified.strip()
+
+        # 如果为空，使用默认
+        if not simplified:
+            simplified = "专业顾问"
+
+        return simplified
 
     def generate_soul(self) -> str:
         """生成SOUL.md - Agent灵魂与核心价值观"""
@@ -1114,7 +1151,7 @@ last_updated: {self.metadata['generation_date']}
 
         # 构建CLAUDE.md变量
         claude_variables = {
-            "project_name": agent_name,
+            "project_name": f"{self.domain}专业Agent项目",
             "project_overview": self._extract_project_overview(soul_content),
             "intelligent_collaboration_rules": self._extract_collaboration_rules(agents_content),
             "professional_spirit_rules": self._extract_professional_rules(soul_content),
@@ -1160,9 +1197,12 @@ last_updated: {self.metadata['generation_date']}
         # 生成Agent配置文件
         agent_md = self._render_template("agent_template.md", agent_variables)
 
+        # 获取Agent文件名（简化版）
+        agent_filename = self._get_agent_filename()
+
         return {
             "CLAUDE.md": claude_md,
-            f"{agent_name}.md": agent_md
+            f".agents/{agent_filename}.md": agent_md
         }
 
     def _extract_section_content(self, content: str, section_title: str, max_lines: int = 10) -> str:

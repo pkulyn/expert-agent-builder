@@ -21,11 +21,14 @@
 
 ## 特性
 
-- **交互式引导**：逐步引导用户提供个人信息和Agent画像
+- **智能交互流程**：基于四层六维专业人格模型的增强交互，支持平台/模式选择、混合信息获取方式
+- **多Agent协作系统**：支持团队信息收集、多个Agent画像定义、协作规则制定
+- **双平台支持**：OpenClaw和Claude Code双平台配置生成
 - **智能生成**：基于四层六维专业人格模型生成高质量配置
 - **多维度验证**：完整性、一致性、质量三重验证
 - **领域适配**：支持技术架构、法律、商业、创意、医学等专业领域
 - **情感智能集成**：内置情感识别、支持、鼓励等人性化功能
+- **向后兼容**：保持现有功能完整，新增智能模式为默认选项
 - **一键运行**：提供完整的示例和运行脚本
 
 ## 快速开始
@@ -40,7 +43,22 @@ python --version
 
 ### 使用方式
 
-#### 1. 交互式模式（推荐）
+#### 1. 智能模式（推荐 - 新交互流程）
+
+基于四层六维专业人格模型的增强交互流程，支持平台选择、Agent模式选择、混合信息获取方式：
+
+```bash
+python openclaw-config-generator.py --mode smart
+```
+
+**智能模式特点**：
+- **平台选择**：OpenClaw或Claude Code平台
+- **Agent模式**：单Agent或多Agent协作系统
+- **信息获取方式**：交互式问答、资料整理、混合模式
+- **信息确认**：收集信息后用户确认再生成配置
+- **多Agent支持**：支持团队信息收集、多个Agent画像定义、协作规则制定
+
+#### 2. 交互式模式（传统 - 向后兼容）
 
 引导用户逐步填写信息并生成配置：
 
@@ -48,7 +66,7 @@ python --version
 python openclaw-config-generator.py --mode interactive
 ```
 
-#### 2. 生成模式
+#### 3. 生成模式
 
 基于现有模板文件生成配置：
 
@@ -60,7 +78,7 @@ python openclaw-config-generator.py \
   --output-dir my-agent-config
 ```
 
-#### 3. 验证模式
+#### 4. 验证模式
 
 验证现有配置的质量：
 
@@ -71,7 +89,7 @@ python openclaw-config-generator.py \
   --validation-level strict
 ```
 
-#### 4. 示例模式
+#### 5. 示例模式
 
 运行技术架构顾问示例：
 
@@ -130,6 +148,63 @@ python openclaw-config-generator.py \
 | `[Agent名称].md` | Agent配置文件 | Frontmatter（name、description、type、model）、核心身份定位、强制遵守规则、标准工作流程、核心工作职责、专业能力与工具、用户理解与沟通、工作质量标准、情感智能与支持、快速响应模板 |
 
 *注：Claude Code格式配置文件基于Expert Agent Builder方法论生成，将OpenClaw四层六维专业人格模型适配到Claude Code平台。*
+
+## 多Agent协作系统
+
+智能模式支持创建多Agent协作系统，适用于团队协作、角色分工、复杂业务流程。
+
+### 多Agent配置结构
+
+当选择多Agent模式时，系统会引导您收集以下信息：
+
+1. **团队信息**
+   - 团队名称、描述、规模
+   - 协作模型、决策流程、通信协议
+   - 主要任务类型、交互模式、成功指标
+
+2. **多个Agent画像**
+   - 为每个Agent定义专业身份、核心人格、工作行为
+   - 支持不同角色分工（项目管家、技术专家、创意写手等）
+   - 每个Agent独立的六维评分体系
+
+3. **协作规则**
+   - 角色分配：主要协调Agent、专业Agent、备份角色
+   - 通信协议：任务分配流程、状态报告机制、错误处理流程
+   - 质量保证：审核流程、质量标准、改进周期
+   - 性能监控：关键指标、报告频率、优化触发条件
+
+### 多Agent输出结构
+
+```
+generated-config/
+├── collected-info/
+│   ├── user_profile.json          # 用户个人信息
+│   ├── team_info.json             # 团队信息
+│   ├── collaboration_rules.json   # 协作规则
+│   └── agent_profiles/
+│       ├── agent_1_profile.json   # 第1个Agent画像
+│       ├── agent_2_profile.json   # 第2个Agent画像
+│       └── ...
+├── agent-config/
+│   ├── agent_1/                   # 第1个Agent配置
+│   │   ├── SOUL.md
+│   │   ├── IDENTITY.md
+│   │   ├── TOOLS.md
+│   │   ├── AGENTS.md
+│   │   └── USER.md
+│   ├── agent_2/                   # 第2个Agent配置
+│   └── team-config/               # 团队级配置
+│       ├── team_info.json
+│       └── collaboration_rules.json
+└── validation_report.md           # 验证报告
+```
+
+### 多Agent使用场景
+
+1. **智能协作工作台**：项目管家 + 文稿专家 + 创意写手
+2. **技术团队**：架构师 + 开发专家 + 测试专家 + 运维专家
+3. **创意团队**：创意总监 + 文案专家 + 设计专家 + 策划专家
+4. **商业团队**：战略顾问 + 市场分析师 + 财务专家 + 法务专家
 
 ## 模板系统
 
@@ -396,6 +471,28 @@ MIT License
 - 社区：OpenClaw社区论坛
 
 ## 更新日志
+
+### v2.0.0 (2026-04-11)
+
+- **新增智能模式**：基于四层六维专业人格模型的增强交互流程
+- **多Agent协作系统**：支持团队信息收集、多个Agent画像定义、协作规则制定
+- **智能信息获取方式**：交互式问答、资料整理、混合模式三选一
+- **信息确认机制**：收集信息后用户确认再生成配置
+- **平台扩展支持**：
+  - OpenClaw平台：单Agent和多Agent配置
+  - Claude Code平台：单Agent和多Agent配置
+  - 双格式输出：支持同时生成OpenClaw和Claude Code配置
+
+- **核心功能增强**：
+  - `EnhancedInteractiveFiller`类：支持多Agent信息收集
+  - 团队信息收集：团队名称、描述、规模、协作模型
+  - 多个Agent画像：支持不同角色分工和独立六维评分
+  - 协作规则定义：通信协议、角色分配、质量保证
+
+- **向后兼容性**：
+  - 保持现有功能完整，`--mode interactive`仍可用
+  - 新增`--mode smart`为默认选项
+  - 所有现有模板和示例继续支持
 
 ### v1.0.0 (2026-04-09)
 

@@ -60,6 +60,12 @@ class ConfigValidator:
     # 默认的必需配置文件（OpenClaw格式）
     DEFAULT_REQUIRED_FILES = ["SOUL.md", "IDENTITY.md", "TOOLS.md", "AGENTS.md", "USER.md"]
 
+    # 多Agent团队级必需文件
+    MULTI_AGENT_TEAM_FILES = ["team_configuration.json", "TEAM_CONFIGURATION.md"]
+
+    # 多Agent遗留文件（向后兼容）
+    MULTI_AGENT_LEGACY_FILES = ["team_info.json", "collaboration_rules.json"]
+
     # 默认的必需关键配置项（OpenClaw格式）
     DEFAULT_REQUIRED_SECTIONS = {
         "SOUL.md": [
@@ -148,6 +154,16 @@ class ConfigValidator:
                     "Agent配置说明",
                     "工具与环境",
                     "文件命名规范"
+                ],
+                # 通用的Agent配置文件必需章节
+                "agent_config": [
+                    "核心身份定位",
+                    "强制遵守规则",
+                    "遵循标准工作流程",
+                    "核心工作职责",
+                    "专业能力与工具",
+                    "用户理解与沟通",
+                    "工作质量标准"
                 ]
             }
         else:
@@ -204,6 +220,25 @@ class ConfigValidator:
                 content = self._read_file(filepath)
                 if content:
                     self.file_contents[filename] = content
+
+        # 对于Claude Code格式，扫描.agents目录下的Agent配置文件
+        if self.config_format == "claudecode":
+            agents_dir = self.config_dir / ".agents"
+            if agents_dir.exists():
+                for agent_file in agents_dir.glob("*.md"):
+                    content = self._read_file(agent_file)
+                    if content:
+                        self.file_contents[agent_file.name] = content
+            else:
+                # .agents目录不存在是警告，不是错误
+                issues.append(ValidationIssue(
+                    file=".agents/",
+                    line=None,
+                    issue_type=ValidationResult.WARNING,
+                    message=f".agents目录不存在",
+                    suggestion=f"创建.agents目录并添加Agent配置文件"
+                ))
+
         return issues
 
     def validate_file_format(self) -> List[ValidationIssue]:
@@ -285,6 +320,22 @@ class ConfigValidator:
                             message=f"章节内容可能过少: {section}",
                             suggestion=f"丰富'{section}'章节的内容"
                         ))
+
+        # 对于Claude Code格式，检查Agent配置文件的章节完整性
+        if self.config_format == "claudecode":
+            agent_sections = self.REQUIRED_SECTIONS.get("agent_config", [])
+            for filename, content in self.file_contents.items():
+                if filename != "CLAUDE.md" and filename.endswith(".md"):
+                    for section in agent_sections:
+                        found, line_num = self._find_section(content, section)
+                        if not found:
+                            issues.append(ValidationIssue(
+                                file=filename,
+                                line=None,
+                                issue_type=ValidationResult.WARNING,
+                                message=f"可能缺少建议章节: {section}",
+                                suggestion=f"考虑在{filename}中添加'{section}'章节以增强配置完整性"
+                            ))
 
         return issues
 

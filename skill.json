@@ -1,7 +1,7 @@
 {
   "name": "expert-agent-builder",
-  "version": "1.0.0",
-  "description": "高级专业Agent配置生成工具 - 基于四层六维专业人格模型研究成果，帮助用户快速创建专家级Agent配置文件，支持OpenClaw和Claude Code双格式输出",
+  "version": "2.0.0",
+  "description": "高级专业Agent配置生成工具 - 基于四层六维专业人格模型研究成果，支持智能交互流程、多Agent协作系统、OpenClaw和Claude Code双平台配置生成",
   "author": "pkulyn",
   "license": "MIT",
   "homepage": "https://github.com/pkulyn/expert-agent-builder",
@@ -27,11 +27,15 @@
       "name": "mode",
       "type": "string",
       "description": "运行模式",
-      "default": "interactive",
+      "default": "smart",
       "choices": [
         {
+          "value": "smart",
+          "description": "智能模式（推荐）：基于四层六维专业人格模型的增强交互流程，支持平台/模式选择、多Agent配置、混合信息获取方式"
+        },
+        {
           "value": "interactive",
-          "description": "交互式模式：引导用户填写模板并生成配置"
+          "description": "交互式模式：引导用户填写模板并生成配置（传统模式，向后兼容）"
         },
         {
           "value": "generate",
