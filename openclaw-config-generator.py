@@ -13,17 +13,28 @@ import os
 import sys
 import json
 import argparse
-import datetime
 import shutil
+from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple
 
 # 添加utils目录到路径
 sys.path.insert(0, str(Path(__file__).parent / "utils"))
 
+# 导入全局配置
+try:
+    from config import VERSION, VERSION_SHORT, PROJECT_NAME, AUTHOR, RELEASE_DATE
+except ImportError:
+    # 如果配置文件不存在，使用默认值
+    VERSION = "2.0.0"
+    VERSION_SHORT = "2.0"
+    PROJECT_NAME = "Expert Agent Builder"
+    AUTHOR = "pkulyn"
+    RELEASE_DATE = "2026-04-11"
+
 try:
     from config_generator import ConfigGenerator
-    from validator import ConfigValidator, ValidationLevel
+    from validator import ConfigValidator, ValidationLevel, generate_markdown_report
     from document_analyzer import DocumentAnalyzer
 except ImportError as e:
     print(f"导入错误: {e}")
@@ -1204,7 +1215,6 @@ def run_interactive_mode(args):
     # 保存验证报告
     report_file = filler.output_dir / "validation_report.md"
     with open(report_file, 'w', encoding='utf-8') as f:
-        from validator import generate_markdown_report
         generate_markdown_report(report, str(report_file))
 
     print(f"✓ 验证报告已保存到: {report_file}")
@@ -1233,9 +1243,6 @@ def generate_team_configuration(team_info: Dict[str, Any], collaboration_rules: 
     Returns:
         生成的团队配置文件路径
     """
-    import json
-    from datetime import datetime
-
     # 创建团队配置目录
     team_config_dir = output_dir / "team-config"
     team_config_dir.mkdir(parents=True, exist_ok=True)
@@ -1622,7 +1629,7 @@ def run_smart_mode(args):
         if is_multi_agent:
             # 多Agent简化报告
             f.write(f"# 多Agent配置验证报告\n\n")
-            f.write(f"**生成时间**: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"**生成时间**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write(f"**验证状态**: {report.get('status', 'unknown')}\n")
             f.write(f"**消息**: {report.get('message', '')}\n\n")
 
@@ -1651,7 +1658,6 @@ def run_smart_mode(args):
             f.write(f"4. 团队配置已集成协作规则和性能监控体系\n")
         else:
             # 单Agent标准报告
-            from validator import generate_markdown_report
             generate_markdown_report(report, str(report_file))
 
     print(f"✓ 验证报告已保存到: {report_file}")
@@ -1717,7 +1723,6 @@ def run_validate_mode(args):
 
     # 保存验证报告
     if args.report_file:
-        from validator import generate_markdown_report
         generate_markdown_report(report, args.report_file)
         print(f"✓ 验证报告已保存到: {args.report_file}")
 
@@ -1768,7 +1773,6 @@ def run_example_mode(args):
 
     # 保存验证报告
     report_file = Path(args.output_dir) / "validation_report.md"
-    from validator import generate_markdown_report
     generate_markdown_report(report, str(report_file))
 
     print(f"\n[完成] 示例运行完成!")
